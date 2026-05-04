@@ -46,14 +46,14 @@ nav.scrolled{
 }
 .nav-wordmark{
   font-family:'Cinzel',serif;
-  font-size:15px;letter-spacing:0.3em;
+  font-size:18px;letter-spacing:0.3em;
   color:var(--gold);
   text-decoration:none;
   text-transform:uppercase;
 }
 .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
 .nav-links a{
-  font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.22em;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.22em;
   color:rgba(235,204,128,0.45);text-decoration:none;text-transform:uppercase;
   transition:color 0.3s;
 }
@@ -145,7 +145,7 @@ nav.scrolled{
 .marquee{background:var(--gold);padding:0.75rem 0;overflow:hidden;white-space:nowrap;}
 .marquee-track{display:inline-flex;animation:marquee 24s linear infinite;}
 .marquee-track span{
-  font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.32em;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.32em;
   text-transform:uppercase;color:#06050a;padding:0 2rem;
 }
 .marquee-dot{color:rgba(6,5,10,0.28)!important;}
@@ -429,6 +429,132 @@ footer{
   padding:0 4rem;
 }
 
+
+/* ── HAMBURGER / MOBILE NAV ── */
+.hamburger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:flex-end;
+  gap:5px;cursor:pointer;background:none;border:none;padding:4px;
+  z-index:300;
+}
+.hamburger span{
+  display:block;height:1px;background:var(--gold);
+  transition:all 0.35s ease;transform-origin:right center;
+}
+.hamburger span:nth-child(1){width:28px;}
+.hamburger span:nth-child(2){width:20px;}
+.hamburger span:nth-child(3){width:28px;}
+.hamburger.open span:nth-child(1){transform:rotate(-45deg) translateY(1px);width:28px;}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:rotate(45deg) translateY(-1px);width:28px;}
+
+.mobile-overlay{
+  display:none;
+  position:fixed;inset:0;z-index:150;
+  background:rgba(6,5,10,0.97);
+  flex-direction:column;align-items:center;justify-content:center;gap:0;
+  opacity:0;transition:opacity 0.4s ease;
+}
+.mobile-overlay.open{opacity:1;}
+.mobile-overlay ul{list-style:none;text-align:center;}
+.mobile-overlay ul li{
+  opacity:0;transform:translateY(18px);
+  transition:opacity 0.4s ease, transform 0.4s ease;
+  border-bottom:0.5px solid rgba(235,204,128,0.08);
+}
+.mobile-overlay ul li:first-child{border-top:0.5px solid rgba(235,204,128,0.08);}
+.mobile-overlay.open ul li{opacity:1;transform:none;}
+.mobile-overlay.open ul li:nth-child(1){transition-delay:0.1s;}
+.mobile-overlay.open ul li:nth-child(2){transition-delay:0.17s;}
+.mobile-overlay.open ul li:nth-child(3){transition-delay:0.24s;}
+.mobile-overlay.open ul li:nth-child(4){transition-delay:0.31s;}
+.mobile-overlay.open ul li:nth-child(5){transition-delay:0.38s;}
+.mobile-overlay ul li a{
+  display:block;padding:1.4rem 3rem;
+  font-family:'Cinzel',serif;font-size:13px;letter-spacing:0.28em;
+  text-transform:uppercase;color:rgba(235,204,128,0.6);
+  text-decoration:none;transition:color 0.3s;
+}
+.mobile-overlay ul li a:hover{color:var(--gold);}
+.mobile-overlay ul li:last-child a{
+  color:var(--gold);margin-top:1rem;
+  font-size:11px;
+}
+.mobile-overlay-footer{
+  position:absolute;bottom:2.5rem;
+  font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.3em;
+  text-transform:uppercase;color:rgba(235,204,128,0.2);
+}
+
+/* ── MOBILE BREAKPOINTS ── */
+@media(max-width:768px){
+  /* Nav */
+  nav{padding:1.2rem 1.5rem;}
+  nav.scrolled{padding:0.9rem 1.5rem;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+
+  /* Hero */
+  .hero-title{
+    font-size:clamp(52px,16vw,90px);
+  }
+  .hero-tagline{font-size:16px;margin:1.8rem 0 2.5rem;}
+  .hero-actions{flex-direction:column;gap:1.2rem;align-items:center;}
+  .btn-solid{width:100%;max-width:260px;text-align:center;}
+
+  /* Marquee */
+  .marquee-track span{font-size:9px;}
+
+  /* Über teaser */
+  .ueber-teaser{
+    grid-template-columns:1fr;
+    gap:3rem;padding:5rem 1.5rem;
+  }
+  .ueber-lang-panel{min-height:300px;padding:2rem;}
+  .ueber-title{font-size:clamp(36px,12vw,60px);}
+
+  /* Projects */
+  .projects-intro{
+    flex-direction:column;gap:1rem;
+    padding:0 1.5rem 3rem;
+  }
+  .projects-h2{font-size:clamp(36px,11vw,56px);}
+  .proj-panel{height:75vh;min-height:420px;}
+  .proj-panel-content{padding:2rem 1.5rem 3rem;}
+  .proj-name{font-size:clamp(44px,13vw,80px);}
+  .proj-desc{font-size:16px;}
+
+  /* Quote */
+  .quote-section{padding:6rem 1.5rem;}
+  .q-text{font-size:clamp(22px,7vw,36px);}
+  .q-mark{font-size:80px;}
+
+  /* CTA */
+  .cta-section{padding:0 1.5rem 5rem;}
+  .cta-inner{
+    flex-direction:column;text-align:center;
+    padding:3rem 2rem;gap:2rem;
+  }
+  .cta-copy{font-size:clamp(24px,8vw,36px);}
+  .btn-solid{display:inline-block;}
+
+  /* Footer */
+  footer{
+    flex-direction:column;gap:1.5rem;
+    text-align:center;padding:2rem 1.5rem;
+  }
+  .footer-links{justify-content:center;flex-wrap:wrap;gap:1.2rem;}
+
+  /* Projects section padding */
+  .projects-section{padding:6rem 0 4rem;}
+}
+
+@media(max-width:480px){
+  .hero-title{font-size:clamp(44px,18vw,72px);}
+  .proj-name{font-size:clamp(38px,14vw,64px);}
+  .ueber-title{font-size:clamp(32px,13vw,52px);}
+}
+
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.9s ease,transform 0.9s ease;}
 .reveal.in{opacity:1;transform:none;}
@@ -447,7 +573,22 @@ footer{
     <li><a href="#">Konzerte</a></li>
     <li><a href="#" class="nav-join">Mitmachen</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menü öffnen" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE OVERLAY -->
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-label="Navigation">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="chor.html">Chor</a></li>
+    <li><a href="#">Konzerte</a></li>
+    <li><a href="#">Mitmachen</a></li>
+  </ul>
+  <div class="mobile-overlay-footer">Universal · Culture · Connection</div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -660,6 +801,32 @@ function onScroll(){
 }
 window.addEventListener('scroll', onScroll, {passive:true});
 onScroll();
+</script>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const overlay = document.getElementById('mobileOverlay');
+let overlayOpen = false;
+
+function toggleOverlay(){
+  overlayOpen = !overlayOpen;
+  hamburger.classList.toggle('open', overlayOpen);
+  hamburger.setAttribute('aria-expanded', overlayOpen);
+  if(overlayOpen){
+    overlay.style.display = 'flex';
+    requestAnimationFrame(() => overlay.classList.add('open'));
+    document.body.style.overflow = 'hidden';
+  } else {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { overlay.style.display = 'none'; }, 400);
+  }
+}
+
+hamburger.addEventListener('click', toggleOverlay);
+overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  if(overlayOpen) toggleOverlay();
+}));
 </script>
 </body>
 </html>
